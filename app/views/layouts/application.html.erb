@@ -17,6 +17,7 @@
 
   <% flash.each do |name, msg| %>
   <div data-alert class="alert-box">
+  <%#= content_tag :div, msg, class: "#{name} alert-box" %> <!-- Foundation, no div -->
     <%= msg %>
   </div>
   <% end %>
