@@ -1,0 +1,14 @@
+New Appointment
+
+<%= simple_form_for @appointment do |f| %>
+<%= f.error_notification %>
+<%= f.input :month, collection: 1..12 %>
+<%= f.input :date, collection: 1..31 %>
+<%= f.input :hour, collection: 1..12 %>
+<%= f.input :minute, label: 'Minutes', collection: [00, 15, 30, 45] %>
+<%= f.input :meridiem, label: 'AM/PM', collection: ['AM', 'PM'] %>
+
+<%= f.input :description, label: 'Description (500 character limit)', as: :text, input_html: { maxlength: 500 } %>
+
+<%= f.button :submit, 'Add' %>
+<% end %>

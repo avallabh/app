@@ -1,5 +1,7 @@
 <% if current_user %>
-Signed in as: <%= current_user.first_name %> <%= current_user.last_name %> (<%= current_user.email %>)
+  Signed in as: <%= current_user.first_name %> <%= current_user.last_name %> (<%= current_user.email %>)
 <% else %>
-Hello
+  Hello
 <% end %>
+<p></p>
+<%= link_to 'Add Appointment', new_appointment_path %>
