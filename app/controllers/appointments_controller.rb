@@ -15,11 +15,12 @@ class AppointmentsController < ApplicationController
   end
 
   def create
+    @user = current_user
     @appointment = Appointment.new(appointment_params)
     if @appointment.save
       redirect_to root_path, notice: 'Appointment saved'
     else
-      redirect_to root_path, notice: 'Error: Appointment not saved'
+      render 'new', notice: 'Error: Appointment not saved'
     end
   end
 
@@ -30,6 +31,6 @@ class AppointmentsController < ApplicationController
 
   private
   def appointment_params
-    params.require(:appointment).permit(:first_name, :last_name, :month, :date, :hour, :minute, :meridiem, :description)
+    params.require(:appointment).permit(:first_name, :last_name, :month, :date, :hour, :minute, :meridiem, :description, :user_id)
   end
 end

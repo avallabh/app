@@ -9,6 +9,6 @@ New Appointment
 <%= f.input :meridiem, label: 'AM/PM', collection: ['AM', 'PM'] %>
 
 <%= f.input :description, label: 'Description (500 character limit)', as: :text, input_html: { maxlength: 500 } %>
-
+<%= f.hidden_field :user_id, value: current_user.id, readonly: true %>
 <%= f.button :submit, 'Add' %>
 <% end %>
