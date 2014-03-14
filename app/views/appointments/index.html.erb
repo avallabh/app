@@ -5,3 +5,11 @@
 <% end %>
 <p></p>
 <%= link_to 'Add Appointment', new_appointment_path %>
+<p></p>
+
+<% @appointments.each do |appointment| %>
+  <% calendar_string = "#{appointment.month}/#{appointment.date}" %>
+  <% clock_string = "#{appointment.hour}:#{appointment.minute} #{appointment.meridiem}" %>
+  <%= calendar_string %> - <%= clock_string %> <!-- to_datetime -->
+  <br/>
+<% end %>
