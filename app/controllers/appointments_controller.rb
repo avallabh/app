@@ -12,6 +12,7 @@ class AppointmentsController < ApplicationController
 
   def edit
     @appointment = Appointment.find(params[:id])
+    @appointment.end_time = @appointment.start_time + 15.minutes
   end
 
   def show
@@ -31,6 +32,7 @@ class AppointmentsController < ApplicationController
 
   def update
     @appointment = Appointment.find(params[:id])
+    @appointment.end_time = @appointment.start_time + 15.minutes
     if @appointment.update(appointment_params)
       redirect_to root_path, notice: 'Appointment was updated'
     else

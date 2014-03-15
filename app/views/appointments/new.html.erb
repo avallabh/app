@@ -3,9 +3,7 @@ New Appointment
 <%= simple_form_for @appointment do |f| %>
 <%= f.error_notification %>
 <%= f.input :start_time %>
-<!-- value: start_time + 15.minutes, -->
 <%= f.hidden_field :end_time, readonly: true %>
-<!-- value: '2014-03-20 12:15:00' -->
 <%= f.input :description, label: 'Description (500 character limit)', as: :text, input_html: { maxlength: 500 } %>
 <%= f.hidden_field :user_id, value: current_user.id, readonly: true %>
 <%= f.button :submit, 'Add' %>
