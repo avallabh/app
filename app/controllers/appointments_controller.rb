@@ -21,6 +21,7 @@ class AppointmentsController < ApplicationController
   def create
     @user = current_user
     @appointment = Appointment.new(appointment_params)
+    @appointment.end_time = @appointment.start_time + 15.minutes
     if @appointment.save
       redirect_to root_path, notice: 'Appointment saved'
     else
