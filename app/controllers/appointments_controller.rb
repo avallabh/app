@@ -1,6 +1,6 @@
 class AppointmentsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new, :create, :show, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :destroy, :edit]
 
   def index
     @appointments = Appointment.all
@@ -8,6 +8,10 @@ class AppointmentsController < ApplicationController
 
   def new
     @appointment = Appointment.new
+  end
+
+  def edit
+    @appointment = Appointment.find(params[:id])
   end
 
   def show
@@ -21,6 +25,15 @@ class AppointmentsController < ApplicationController
       redirect_to root_path, notice: 'Appointment saved'
     else
       render 'new', notice: 'Error: Appointment not saved'
+    end
+  end
+
+  def update
+    @appointment = Appointment.find(params[:id])
+    if @appointment.update(appointment_params)
+      redirect_to root_path, notice: 'Appointment was updated'
+    else
+      redirect_to root_path, notice: 'Appointment failed to update'
     end
   end
 

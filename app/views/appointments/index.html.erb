@@ -1,7 +1,5 @@
 <% if current_user %>
   Signed in as: <%= current_user.first_name %> <%= current_user.last_name %> (<%= current_user.email %>)
-<% else %>
-  Hello
 <% end %>
 <p></p>
 <%= link_to 'Add Appointment', new_appointment_path %>
@@ -9,9 +7,15 @@
 
 <% counter = 1 %>
 <% @appointments.each do |appointment| %>
-  <%= link_to "Appointment #{counter}",  "/appointments/#{appointment.id}"%><br/>
+  <%= link_to "Appointment #{counter}",  "/appointments/#{appointment.id}"%>
+  <% if current_user != nil && current_user.id == appointment.user_id %>
+  (<%= link_to "Edit", edit_appointment_path(appointment) %> |
+  <%= link_to "Delete", appointment, data: { confirm: 'Are you sure?' }, method: :delete %>)
+  <% end %>
+  <br/>
   Start: <%= appointment.start_time.strftime("%b %d, %Y at %I:%M%P %Z ") %><br/>
-  End: <%= appointment.end_time.strftime("%b %d, %Y at %I:%M%P %Z ") %>
+  End: <%= appointment.end_time.strftime("%b %d, %Y at %I:%M%P %Z ") %><br/>
+  Description: <%= appointment.description %>
   <% counter += 1 %>
   <p></p>
 <% end %>

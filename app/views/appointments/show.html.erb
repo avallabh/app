@@ -2,3 +2,5 @@ Appointment <%= @appointment.id %>
 <p></p>
 Start: <%= @appointment.start_time.strftime("%b %d, %Y at %I:%M%P %Z ") %><br/>
 End: <%= @appointment.end_time.strftime("%b %d, %Y at %I:%M%P %Z ") %>
+<p></p>
+Description: <%= @appointment.description %>
