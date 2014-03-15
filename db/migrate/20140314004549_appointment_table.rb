@@ -1,12 +1,10 @@
 class AppointmentTable < ActiveRecord::Migration
   def change
     create_table :appointments do |t|
-      t.integer :month,       null: false
-      t.integer :date,        null: false
-      t.integer :hour,        null: false
-      t.integer :minute,      null: false
-      t.string  :meridiem,    null: false
-      t.string  :description, null: false
+      t.datetime :start_time,    null: false
+      t.datetime :end_time,      null: false
+      t.string   :description,   null: false
+      t.integer  :user_id,       null: false
 
       t.timestamps
     end

@@ -7,10 +7,11 @@
 <%= link_to 'Add Appointment', new_appointment_path %>
 <p></p>
 
+<% counter = 1 %>
 <% @appointments.each do |appointment| %>
-  <% calendar_string = "#{appointment.month}/#{appointment.date}" %>
-  <% clock_string = "#{appointment.hour}:#{appointment.minute} #{appointment.meridiem}" %>
-  <%= calendar_string %> - <%= clock_string %> (<%= appointment.user_id %>)
-  <!-- to_datetime -->
-  <br/>
+  <%= link_to "Appointment #{counter}",  "/appointments/#{appointment.id}"%><br/>
+  Start: <%= appointment.start_time.strftime("%b %d, %Y at %I:%M%P %Z ") %><br/>
+  End: <%= appointment.end_time.strftime("%b %d, %Y at %I:%M%P %Z ") %>
+  <% counter += 1 %>
+  <p></p>
 <% end %>

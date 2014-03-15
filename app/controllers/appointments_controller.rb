@@ -1,6 +1,6 @@
 class AppointmentsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new, :create, :show, :destroy ]
+  before_action :authenticate_user!, only: [:new, :create, :show, :destroy]
 
   def index
     @appointments = Appointment.all
@@ -31,6 +31,6 @@ class AppointmentsController < ApplicationController
 
   private
   def appointment_params
-    params.require(:appointment).permit(:first_name, :last_name, :month, :date, :hour, :minute, :meridiem, :description, :user_id)
+    params.require(:appointment).permit(:first_name, :last_name, :start_time, :end_time, :description, :user_id)
   end
 end

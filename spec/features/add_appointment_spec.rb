@@ -23,7 +23,7 @@ feature 'add appointments', %Q{
 
   scenario "authenticated user adds appointment" do
     click_link 'Add Appointment'
-    select "3", from: "Month"
+    select "3", from: 'appointment_start_time_1i'
     select "14", from: "Date"
     select "8", from: "Hour"
     select "0", from: "Minutes"

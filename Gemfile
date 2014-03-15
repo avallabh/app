@@ -34,6 +34,7 @@ end
 
 gem "devise"
 gem "simple_form"
+gem "date_time_attribute"
 
 group :production do
   gem "rails_12factor"
