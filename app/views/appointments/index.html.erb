@@ -13,6 +13,7 @@
   <%= link_to "Delete", appointment, data: { confirm: 'Are you sure?' }, method: :delete %>)
   <% end %>
   <br/>
+  Name: <%= appointment.user.first_name %> <%= appointment.user.last_name %><br/>
   Start: <%= appointment.start_time.strftime("%b %d, %Y at %I:%M%P %Z ") %><br/>
   End: <%= appointment.end_time.strftime("%b %d, %Y at %I:%M%P %Z ") %><br/>
   Description: <%= appointment.description %>

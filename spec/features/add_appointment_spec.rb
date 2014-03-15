@@ -23,11 +23,11 @@ feature 'add appointments', %Q{
 
   scenario "authenticated user adds appointment" do
     click_link 'Add Appointment'
-    select "3", from: 'appointment_start_time_1i'
-    select "14", from: "Date"
-    select "8", from: "Hour"
-    select "0", from: "Minutes"
-    select "AM", from: "AM/PM"
+    select "2014", from: 'appointment_start_time_1i'
+    select "March", from: 'appointment_start_time_2i'
+    select "20", from: 'appointment_start_time_3i'
+    select "10", from: 'appointment_start_time_4i'
+    select "00", from: 'appointment_start_time_5i'
     fill_in 'Description', with: "I'd like to schedule an appointment."
     click_button 'Add'
 
@@ -38,11 +38,11 @@ feature 'add appointments', %Q{
 
   scenario "authenticated user doesn't fill out all the fields" do
     click_link 'Add Appointment'
-    select "3", from: "Month"
-    select "14", from: "Date"
-    select "8", from: "Hour"
-    select "0", from: "Minutes"
-    fill_in 'Description', with: "In a hurry."
+    select "2014", from: 'appointment_start_time_1i'
+    select "March", from: 'appointment_start_time_2i'
+    select "21", from: 'appointment_start_time_3i'
+    select "11", from: 'appointment_start_time_4i'
+    select "15", from: 'appointment_start_time_5i'
     click_button 'Add'
 
     expect(page).to_not have_content('Appointment added')
