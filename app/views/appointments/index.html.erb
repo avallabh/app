@@ -6,7 +6,7 @@
 <p></p>
 
 <% counter = 1 %>
-<% @appointments.each do |appointment| %>
+<% @appointments.reverse.each do |appointment| %>
   <%= link_to "Appointment #{counter}",  "/appointments/#{appointment.id}"%>
   <% if current_user != nil && current_user.id == appointment.user_id %>
   (<%= link_to "Edit", edit_appointment_path(appointment) %> |
