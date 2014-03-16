@@ -43,11 +43,12 @@ feature 'add appointments', %Q{
     select "21", from: 'appointment_start_time_3i'
     select "11", from: 'appointment_start_time_4i'
     select "15", from: 'appointment_start_time_5i'
-    click_button 'Add'
+    click_button 'Add Appointment'
 
-    expect(page).to_not have_content('Appointment added')
-    #expect(page).to have_content("can't be blank")
-    expect(page).to have_content('Error: Appointment not saved')
+    # expect(page).to_not have_content('Appointment added')
+    # expect(page).to have_content("can't be blank")
+    expect(page).to have_content('Please fill out this field')
+    expect(page).to have_content('New Appointment')
   end
 
   scenario "unauthenticated user tries to add appointment" do

@@ -24,26 +24,29 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.new(appointment_params)
     @appointment.end_time = @appointment.start_time + 15.minutes
     if @appointment.save
-      redirect_to root_path, notice: 'Appointment saved'
+      flash[:success] = 'Appointment saved'
+      redirect_to root_path
     else
-      render 'new', notice: 'Error: Appointment not saved'
+      flash[:alert] = 'Error: Appointment not saved'
     end
   end
 
   def update
     @appointment = Appointment.find(params[:id])
-
     @appointment.end_time = @appointment.start_time + 15.minutes
     if @appointment.update(appointment_params)
-      redirect_to root_path, notice: 'Appointment was updated'
+      flash[:success] = 'Appointment updated'
+      redirect_to root_path
     else
-      redirect_to root_path, notice: 'Appointment failed to update'
+      flash[:alert] = 'Appointment failed to update'
+      # redirect_to root_path
     end
   end
 
   def destroy
     Appointment.find(params[:id]).destroy
-    redirect_to root_path, notice: 'The appointment was deleted'
+    flash[:success] = 'The appointment was deleted'
+    redirect_to root_path
   end
 
   private

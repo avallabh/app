@@ -63,7 +63,7 @@ So I can add/edit/delete/view appointments
     fill_in "Password", with: test.password
     click_button "Sign In"
 
-    expect(page).to have_content('Signed in as')
+    expect(page).to have_content('Signed in successfully.')
     expect(page).to_not have_content('Sign In')
     expect(page).to_not have_content('Error')
   end

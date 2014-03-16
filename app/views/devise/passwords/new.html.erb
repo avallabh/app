@@ -1,15 +1,32 @@
-<h2>Forgot your password?</h2>
-
-<%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email, :required => true, :autofocus => true %>
+<div class="row">
+  <div class="small-3 columns"></div>
+  <div class="small-6 small-centered columns">
+    <h2>Forgot your password?</h2>
   </div>
+  <div class="small-3 columns"></div>
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
+<div class="row">
+  <div class="small-3 columns"></div>
+  <div class="small-6 small-centered columns"><div>
+    <%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+
+    <div class="form-inputs">
+      <%= f.input :email, :required => true, :autofocus => true %>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, "Send Me Reset Password Instructions" %>
+    </div>
+    <% end %>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+  <div class="small-3 columns"></div>
+</div>
+<br/>
+<div class="row">
+  <div class="small-3 columns"></div>
+  <div class="small-6 small-centered columns">
+     <%= link_to "Already Registered? Sign In", new_session_path(resource_name) %> |
+  <%= link_to "New User? Sign Up", new_registration_path(resource_name) %>
+  </div>
+  <div class="small-3 columns"></div>
+</div>

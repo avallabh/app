@@ -1,19 +1,37 @@
-<h2>Change your password</h2>
-
-<%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= f.error_notification %>
-
-  <%= f.input :reset_password_token, :as => :hidden %>
-  <%= f.full_error :reset_password_token %>
-
-  <div class="form-inputs">
-    <%= f.input :password, :label => "New password", :required => true, :autofocus => true %>
-    <%= f.input :password_confirmation, :label => "Confirm your new password", :required => true %>
+<div class="row">
+  <div class="small-3 columns"></div>
+  <div class="small-6 small-centered columns">
+    <h2>Change your password</h2>
   </div>
+  <div class="small-3 columns"></div>
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Change my password" %>
+<div class="row">
+  <div class="small-3 columns"></div>
+  <div class="small-6 small-centered columns"><div>
+    <%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+    <%= f.input :reset_password_token, :as => :hidden %>
+    <%= f.full_error :reset_password_token %>
+    <div class="form-inputs">
+      <%= f.input :password, :label => "New password", :required => true, :autofocus => true %>
+      <%= f.input :password_confirmation, :label => "Confirm your new password", :required => true %>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, "Change my password" %>
+    </div>
+    <% end %>
   </div>
-<% end %>
+  <div class="small-3 columns"></div>
+</div>
 
-<%= render "devise/shared/links" %>
+<div class="row">
+  <div class="small-3 columns"></div>
+  <div class="small-6 small-centered columns">
+    <%= render "devise/shared/links" %>
+  </div>
+  <div class="small-3 columns"></div>
+</div>
+
+
+
+

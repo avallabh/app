@@ -1,22 +1,40 @@
-<% if current_user %>
-  Signed in as: <%= current_user.first_name %> <%= current_user.last_name %> (<%= current_user.email %>)
-<% end %>
-<p></p>
-<%= link_to 'Add Appointment', new_appointment_path %>
-<p></p>
+<br/>
+<div class="row">
+  <div class="small-12 small-centered columns">
+    <%= link_to 'Add Appointment', new_appointment_path, class: 'button small new-button' %>
+  </div>
+</div>
 
-<% counter = 1 %>
-<% @appointments.reverse.each do |appointment| %>
-  <%= link_to "Appointment #{counter}",  "/appointments/#{appointment.id}"%>
-  <% if current_user != nil && current_user.id == appointment.user_id %>
-  (<%= link_to "Edit", edit_appointment_path(appointment) %> |
-  <%= link_to "Delete", appointment, data: { confirm: 'Are you sure?' }, method: :delete %>)
-  <% end %>
-  <br/>
-  Name: <%= appointment.user.first_name %> <%= appointment.user.last_name %><br/>
-  Start: <%= appointment.start_time.strftime("%b %d, %Y at %I:%M%P %Z ") %><br/>
-  End: <%= appointment.end_time.strftime("%b %d, %Y at %I:%M%P %Z ") %><br/>
-  Description: <%= appointment.description %>
-  <% counter += 1 %>
-  <p></p>
-<% end %>
+<div class="row">
+  <div class="small-12 small-centered columns">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Appointment #</th>
+          <th>Start</th>
+          <th>End</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% counter = 1 %>
+        <% @appointments.reverse.each do |appointment| %>
+          <tr>
+            <td>
+              <%= link_to "#{counter} - #{appointment.user.first_name} #{appointment.user.last_name}",  "/appointments/#{appointment.id}"%>
+              <% if current_user != nil && current_user.id == appointment.user_id %>
+                [ <%= link_to "Edit", edit_appointment_path(appointment) %> |
+                <%= link_to "Delete", appointment, data: { confirm: 'Are you sure?' }, method: :delete %> ]
+              <% end %>
+            </td>
+            <td><%= appointment.start_time.strftime("%b %d, %Y at %I:%M%P %Z ") %></td>
+            <td><%= appointment.end_time.strftime("%b %d, %Y at %I:%M%P %Z ") %></td>
+          </tr>
+          <tr>
+            <td colspan="8"><strong>Description:</strong> <%= appointment.description %></td>
+          </tr>
+          <% counter += 1 %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
