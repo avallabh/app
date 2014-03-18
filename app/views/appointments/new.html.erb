@@ -1,36 +1,35 @@
 <body onload="replaceScript();">
-
-<div class="row">
-  <div class="small-3 columns"></div>
-  <div class="small-6 small-centered columns">
-    <h2>New Appointment</h2>
-    <h5 class="subheader">Each appointment lasts 15 minutes</h5>
+  <div class="row">
+    <div class="small-3 columns"></div>
+    <div class="small-6 small-centered columns">
+      <h2>New Appointment</h2>
+      <h5 class="subheader">Each appointment lasts 15 minutes</h5>
+    </div>
+    <div class="small-3 columns"></div>
   </div>
-  <div class="small-3 columns"></div>
-</div>
-<br/>
-<div class="row">
-  <div class="small-3 columns"></div>
-  <div class="small-6 small-centered columns"><div>
-    <%= simple_form_for @appointment do |f| %>
-    <%= f.input :start_time, label: false %>
-    <%= f.hidden_field :end_time, readonly: true %>
-    <%= f.input :description, label: 'Description (500 character limit)', as: :text, input_html: { maxlength: 500 } %>
-    <%= f.hidden_field :user_id, value: current_user.id, readonly: true %>
-    <%= f.button :submit, 'Add Appointment' %>
-    <% end %>
+  <br/>
+  <div class="row">
+    <div class="small-3 columns"></div>
+    <div class="small-6 small-centered columns"><div>
+      <%= simple_form_for @appointment do |f| %>
+      <%= f.input :start_time, label: false %>
+      <%= f.hidden_field :end_time, readonly: true %>
+      <%= f.input :description, label: 'Description (500 character limit)', as: :text, input_html: { maxlength: 500 } %>
+      <%= f.hidden_field :user_id, value: current_user.id, readonly: true %>
+      <%= f.button :submit, 'Add Appointment' %>
+      <% end %>
+    </div>
+    <div class="small-3 columns"></div>
   </div>
-  <div class="small-3 columns"></div>
-</div>
 
-<script type="text/javascript">
-function replaceScript() {
+  <script type="text/javascript">
+  function replaceScript() {
     var toReplace1 = '—';
     var replaceWith1 ='Hour (hh:mm)';
     var toReplace2 = ' :';
     var replaceWith2 = 'Minutes (hh:mm)';
     document.body.innerHTML = document.body.innerHTML.replace(toReplace1, replaceWith1);
     document.body.innerHTML = document.body.innerHTML.replace(toReplace2, replaceWith2);
-}
-</script>
-</body></html>
+  }
+  </script>
+</body>

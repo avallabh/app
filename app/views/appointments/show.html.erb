@@ -1,6 +1,33 @@
-Appointment <%= @appointment.id %>
-<p></p>
-Start: <%= @appointment.start_time.strftime("%b %d, %Y at %I:%M%P %Z ") %><br/>
-End: <%= @appointment.end_time.strftime("%b %d, %Y at %I:%M%P %Z ") %>
-<p></p>
-Description: <%= @appointment.description %>
+<br><div class="row">
+  <div class="small-3 columns"></div>
+  <div class="small-6  columns">
+    <h2>View Appointment</h2>
+  </div>
+  <div class="small-3 columns"></div>
+</div>
+
+<div class="row">
+  <div class="small-12 small-centered columns">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="text-center">Appointment</th>
+          <th class="text-center">Start</th>
+          <th class="text-center">End</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <%= "#{@appointment.user.first_name} #{@appointment.user.last_name}"%>
+          </td>
+          <td><%= @appointment.start_time.strftime("%b %d, %Y at %I:%M%P %Z ") %></td>
+          <td><%= @appointment.end_time.strftime("%b %d, %Y at %I:%M%P %Z ") %></td>
+        </tr>
+        <tr>
+          <td colspan="8"><strong>Description:</strong> <%= @appointment.description %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
