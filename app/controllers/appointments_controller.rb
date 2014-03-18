@@ -2,6 +2,7 @@ class AppointmentsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create, :destroy, :edit]
 
+
   def index
     @appointments = Appointment.all
   end
@@ -13,6 +14,10 @@ class AppointmentsController < ApplicationController
   def edit
     @appointment = Appointment.find(params[:id])
     @appointment.end_time = @appointment.start_time + 15.minutes
+    unless @appointment.user_id == current_user.id
+      flash[:alert] = "Access Denied"
+      redirect_to root_path
+    end
   end
 
   def show
@@ -28,6 +33,7 @@ class AppointmentsController < ApplicationController
       redirect_to root_path
     else
       flash[:alert] = 'Error: Appointment not saved'
+      render 'new'
     end
   end
 
@@ -39,14 +45,20 @@ class AppointmentsController < ApplicationController
       redirect_to root_path
     else
       flash[:alert] = 'Appointment failed to update'
-      # redirect_to root_path
+      render 'edit'
     end
   end
 
   def destroy
-    Appointment.find(params[:id]).destroy
-    flash[:success] = 'The appointment was deleted'
-    redirect_to root_path
+    @appointment = Appointment.find(params[:id])
+    if current_user != nil && @appointment.user_id == current_user.id
+      @appointment.destroy
+      flash[:notice] = "Appointment was successfully deleted."
+      redirect_to root_path
+    else
+      flash[:alert] = "Access Denied"
+      redirect_to root_path
+    end
   end
 
   private

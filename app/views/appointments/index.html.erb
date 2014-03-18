@@ -1,4 +1,5 @@
 <br/>
+
 <div class="row">
   <div class="small-12 small-centered columns">
     <%= link_to 'Add Appointment', new_appointment_path, class: 'button small new-button' %>
@@ -10,9 +11,10 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Appointment #</th>
-          <th>Start</th>
-          <th>End</th>
+          <th class="text-center">Appointment</th>
+          <th class="text-center">Start</th>
+          <th class="text-center">End</th>
+          <th class="text-center">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -20,14 +22,17 @@
         <% @appointments.reverse.each do |appointment| %>
           <tr>
             <td>
-              <%= link_to "#{counter} - #{appointment.user.first_name} #{appointment.user.last_name}",  "/appointments/#{appointment.id}"%>
-              <% if current_user != nil && current_user.id == appointment.user_id %>
-                [ <%= link_to "Edit", edit_appointment_path(appointment) %> |
-                <%= link_to "Delete", appointment, data: { confirm: 'Are you sure?' }, method: :delete %> ]
-              <% end %>
+              <%= "#{counter} - #{appointment.user.first_name} #{appointment.user.last_name}" %>
             </td>
             <td><%= appointment.start_time.strftime("%b %d, %Y at %I:%M%P %Z ") %></td>
             <td><%= appointment.end_time.strftime("%b %d, %Y at %I:%M%P %Z ") %></td>
+            <td class="text-center">
+              <%= link_to "View",  "/appointments/#{appointment.id}"%>
+              <% if current_user != nil && current_user.id == appointment.user_id %>
+              | <%= link_to "Edit", edit_appointment_path(appointment) %> |
+              <%= link_to "Delete", appointment, data: { confirm: 'Are you sure?' }, method: :delete %>
+              <% end %>
+            </td>
           </tr>
           <tr>
             <td colspan="8"><strong>Description:</strong> <%= appointment.description %></td>
