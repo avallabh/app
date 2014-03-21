@@ -12,11 +12,10 @@ class AppointmentsController < ApplicationController
 
   def edit
     @appointment = Appointment.find(params[:id])
-    @appointment.end_time = @appointment.start_time + 15.minutes
-    unless @appointment.user_id == current_user.id
-      flash[:alert] = "Access Denied"
-      redirect_to root_path
-    end
+    # unless @appointment.user_id == current_user.id
+    #   flash[:alert] = "Access Denied"
+    #   redirect_to root_path
+    # end
   end
 
   def show
@@ -26,7 +25,6 @@ class AppointmentsController < ApplicationController
   def create
     @user = current_user
     @appointment = Appointment.new(appointment_params)
-    @appointment.end_time = @appointment.start_time + 15.minutes
     if @appointment.save
       flash[:success] = 'Appointment saved'
       redirect_to root_path
@@ -38,7 +36,6 @@ class AppointmentsController < ApplicationController
 
   def update
     @appointment = Appointment.find(params[:id])
-    @appointment.end_time = @appointment.start_time + 15.minutes
     if @appointment.update(appointment_params)
       flash[:success] = 'Appointment updated'
       redirect_to root_path
@@ -50,18 +47,18 @@ class AppointmentsController < ApplicationController
 
   def destroy
     @appointment = Appointment.find(params[:id])
-    if current_user != nil && @appointment.user_id == current_user.id
-      @appointment.destroy
-      flash[:notice] = "Appointment was successfully deleted."
+    # if current_user != nil && @appointment.user_id == current_user.id
+    if @appointment.destroy
+      flash[:notice] = "Appointment was successfully deleted"
       redirect_to root_path
-    else
-      flash[:alert] = "Access Denied"
-      redirect_to root_path
+    # else
+    #   flash[:alert] = "Access Denied"
+    #   redirect_to root_path
     end
   end
 
   private
   def appointment_params
-    params.require(:appointment).permit(:first_name, :last_name, :start_time, :end_time, :description, :user_id)
+    params.require(:appointment).permit(:first_name, :last_name, :start_time, :end_time, :comments, :user_id)
   end
 end
