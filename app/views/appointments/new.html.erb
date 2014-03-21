@@ -3,7 +3,6 @@
     <div class="small-3 columns"></div>
     <div class="small-6 small-centered columns">
       <h2>New Appointment</h2>
-      <h5 class="subheader">Each appointment lasts 15 minutes</h5>
     </div>
     <div class="small-3 columns"></div>
   </div>
@@ -15,7 +14,10 @@
       <%= f.input :start_time, label: 'Start Time' %>
       <br/>
       <%= f.input :end_time, label: 'End Time' %>
-      <%= f.input :description, label: 'Description (500 character limit)', as: :text, input_html: { maxlength: 500 } %>
+      <br/>
+      <%= f.input :first_name, label: 'First Name' %>
+      <%= f.input :last_name, label: 'Last Name' %>
+      <%= f.input :comments, label: 'Comments (500 character limit)', as: :text, input_html: { maxlength: 500 } %>
       <%= f.hidden_field :user_id, value: current_user.id, readonly: true %>
       <%= f.button :submit, 'Add Appointment' %>
       <% end %>

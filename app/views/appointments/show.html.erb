@@ -14,18 +14,18 @@
           <th class="text-center">Appointment</th>
           <th class="text-center">Start</th>
           <th class="text-center">End</th>
+          <th class="text-center">Created By</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>
-            <%= "#{@appointment.user.first_name} #{@appointment.user.last_name}"%>
-          </td>
+          <td><%= "#{@appointment.first_name} #{@appointment.last_name}"%></td>
           <td><%= @appointment.start_time.strftime("%b %d, %Y at %I:%M%P %Z ") %></td>
           <td><%= @appointment.end_time.strftime("%b %d, %Y at %I:%M%P %Z ") %></td>
+          <td><%= "#{@appointment.user.first_name} #{@appointment.user.last_name}"%></td>
         </tr>
         <tr>
-          <td colspan="8"><strong>Description:</strong> <%= @appointment.description %></td>
+          <td colspan="8"><strong>Comments:</strong> <%= @appointment.comments %></td>
         </tr>
       </tbody>
     </table>

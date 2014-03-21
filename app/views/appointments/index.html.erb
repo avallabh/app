@@ -21,20 +21,18 @@
         <% @appointments.reverse.each do |appointment| %>
           <tr>
             <td>
-              <%= "#{counter} - #{appointment.user.first_name} #{appointment.user.last_name}" %>
+              <%= "#{counter} - #{appointment.first_name} #{appointment.last_name}" %>
             </td>
             <td><%= appointment.start_time.strftime("%b %d, %Y at %I:%M%P %Z ") %></td>
             <td><%= appointment.end_time.strftime("%b %d, %Y at %I:%M%P %Z ") %></td>
             <td class="text-center">
-              <%= link_to "View",  "/appointments/#{appointment.id}"%>
-              <% if current_user != nil && current_user.id == appointment.user_id %>
-              | <%= link_to "Edit", edit_appointment_path(appointment) %> |
+              <%= link_to "View",  "/appointments/#{appointment.id}"%> |
+              <%= link_to "Edit", edit_appointment_path(appointment) %> |
               <%= link_to "Delete", appointment, data: { confirm: 'Are you sure?' }, method: :delete %>
-              <% end %>
             </td>
           </tr>
           <tr>
-            <td colspan="8"><strong>Description:</strong> <%= appointment.description %></td>
+            <td colspan="8"><strong>Comments:</strong> <%= appointment.comments %></td>
           </tr>
           <% counter += 1 %>
         <% end %>
