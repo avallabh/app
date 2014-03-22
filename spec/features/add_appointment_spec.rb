@@ -12,6 +12,7 @@ feature 'add appointments', %Q{
 # * Edit/Delete only my appointments
 
   let(:user) { FactoryGirl.create(:user) }
+  let(:appointment) { FactoryGirl.create(:appointment) }
 
   before :each do
     visit root_path
@@ -23,12 +24,22 @@ feature 'add appointments', %Q{
 
   scenario "authenticated user adds appointment" do
     click_link 'Add Appointment'
+
     select "2014", from: 'appointment_start_time_1i'
-    select "March", from: 'appointment_start_time_2i'
-    select "20", from: 'appointment_start_time_3i'
+    select "April", from: 'appointment_start_time_2i'
+    select "1", from: 'appointment_start_time_3i'
     select "10", from: 'appointment_start_time_4i'
     select "00", from: 'appointment_start_time_5i'
-    fill_in 'Description', with: "I'd like to schedule an appointment."
+
+    select "2014", from: 'appointment_end_time_1i'
+    select "April", from: 'appointment_end_time_2i'
+    select "1", from: 'appointment_end_time_3i'
+    select "10", from: 'appointment_end_time_4i'
+    select "10", from: 'appointment_end_time_5i'
+
+    fill_in 'First Name', with: "Orianna"
+    fill_in 'Last Name', with: "Reveck"
+    fill_in 'Comments', with: "The Lady of Clockwork"
     click_button 'Add'
 
     expect(page).to have_content('Appointment saved')
@@ -39,7 +50,7 @@ feature 'add appointments', %Q{
   scenario "authenticated user doesn't fill out all the fields" do
     click_link 'Add Appointment'
     select "2014", from: 'appointment_start_time_1i'
-    select "March", from: 'appointment_start_time_2i'
+    select "April", from: 'appointment_start_time_2i'
     select "21", from: 'appointment_start_time_3i'
     select "11", from: 'appointment_start_time_4i'
     select "15", from: 'appointment_start_time_5i'
@@ -54,7 +65,7 @@ feature 'add appointments', %Q{
     click_link 'Sign Out'
     visit new_appointment_path
 
-    expect(page).to_not have_content('Description')
+    expect(page).to_not have_content('Comments')
     expect(page).to have_content('You need to sign in or sign up before continuing.')
   end
 
