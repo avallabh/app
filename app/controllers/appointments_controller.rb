@@ -23,24 +23,34 @@ class AppointmentsController < ApplicationController
   end
 
   def create
-    @user = current_user
     @appointment = Appointment.new(appointment_params)
-    if @appointment.save
-      flash[:success] = 'Appointment saved'
-      redirect_to root_path
+    if @appointment.start_time.future? && @appointment.end_time.future?
+      if @appointment.save
+        flash[:success] = 'Appointment saved'
+        redirect_to root_path
+      else
+        flash[:alert] = 'Error: Appointment not saved'
+        render 'new'
+      end
     else
-      flash[:alert] = 'Error: Appointment not saved'
+      flash[:alert] = 'Error: Appointment must be in the future'
       render 'new'
     end
   end
 
   def update
     @appointment = Appointment.find(params[:id])
-    if @appointment.update(appointment_params)
-      flash[:success] = 'Appointment updated'
-      redirect_to root_path
+
+    if @appointment.start_time.future? && @appointment.end_time.future?
+      if @appointment.update(appointment_params)
+        flash[:success] = 'Appointment updated'
+        redirect_to root_path
+      else
+        flash[:alert] = 'Appointment failed to update'
+        render 'edit'
+      end
     else
-      flash[:alert] = 'Appointment failed to update'
+      flash[:alert] = 'Error: Appointment must be in the future'
       render 'edit'
     end
   end
