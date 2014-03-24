@@ -16,28 +16,20 @@ class Api::V1::AppointmentsController < ApplicationController
 
   def create
     @appointment = Appointment.new(appointment_params)
-    # if @appointment.start_time.future? && @appointment.end_time.future?
       if @appointment.save
         render json: @appointment
       else
         render json: @appointment.errors, status: :unprocessable_entity
       end
-    # else
-    #   render json: @appointment.errors, status: :unprocessable_entity
-    # end
   end
 
   def update
     @appointment = Appointment.find(params[:id])
-    # if @appointment.start_time.future? && @appointment.end_time.future?
       if @appointment.update(appointment_params)
         render json: @appointment, status: :ok, location: [:api, @appointment]
       else
         render json: @appointment.errors, status: :unprocessable_entity
       end
-    # else
-    #   render json: @appointment.errors, status: :unprocessable_entity
-    # end
   end
 
   def destroy

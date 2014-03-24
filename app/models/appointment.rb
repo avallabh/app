@@ -10,4 +10,5 @@ class Appointment < ActiveRecord::Base
     inverse_of: :appointments
 
   default_scope { order('start_time DESC') }
+
 end
