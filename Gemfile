@@ -33,7 +33,8 @@ gem "devise"
 gem "simple_form"
 gem "date_time_attribute"
 gem "foundation-rails"
-gem 'validates_overlap'
+gem "validates_overlap"
+gem "active_model_serializers"
 
 group :production do
   gem "rails_12factor"

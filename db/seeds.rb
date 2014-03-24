@@ -2,7 +2,6 @@ require 'csv'
 
 datafile = Rails.root + 'db/data/appointment_data.csv'
 
-# "%d/%m,%Y %H:%M"
 CSV.foreach(datafile, headers: true) do |row|
   Appointment.create! do |appt|
     appt.start_time = DateTime.strptime(row['start_time'], "%m/%d/%Y %H:%M")
