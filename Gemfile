@@ -52,4 +52,5 @@ group :development, :test do
   gem "capybara"
   gem "quiet_assets"
   gem "launchy"
+  gem 'dotenv-rails'
 end
