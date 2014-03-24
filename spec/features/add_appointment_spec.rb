@@ -54,6 +54,12 @@ feature 'add appointments', %Q{
     select "21", from: 'appointment_start_time_3i'
     select "11", from: 'appointment_start_time_4i'
     select "15", from: 'appointment_start_time_5i'
+
+    select "2014", from: 'appointment_end_time_1i'
+    select "April", from: 'appointment_end_time_2i'
+    select "21", from: 'appointment_end_time_3i'
+    select "11", from: 'appointment_end_time_4i'
+    select "30", from: 'appointment_end_time_5i'
     click_button 'Add Appointment'
 
     expect(page).to_not have_content('Appointment added')
