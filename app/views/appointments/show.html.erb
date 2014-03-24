@@ -22,7 +22,13 @@
           <td><%= "#{@appointment.first_name} #{@appointment.last_name}"%></td>
           <td><%= @appointment.start_time.strftime("%b %d, %Y at %I:%M%P %Z ") %></td>
           <td><%= @appointment.end_time.strftime("%b %d, %Y at %I:%M%P %Z ") %></td>
-          <td><%= "#{@appointment.user.first_name} #{@appointment.user.last_name}"%></td>
+          <td>
+            <% if !@appointment.user_id.nil? %>
+              <%= "#{@appointment.user.first_name} #{@appointment.user.last_name}"%>
+            <% else %>
+              N/A
+            <% end %>
+          </td>
         </tr>
         <tr>
           <td colspan="8"><strong>Comments:</strong> <%= @appointment.comments %></td>
