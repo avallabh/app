@@ -9,6 +9,11 @@ class Api::V1::AppointmentsController < ApplicationController
     render json: @appointment, status: :ok
   end
 
+  def edit
+    @appointment = Appointment.find(params[:id])
+    render json: @appointment, status: :ok
+  end
+
   def show
     @appointment = Appointment.find(params[:id])
     render json: @appointment, status: :ok

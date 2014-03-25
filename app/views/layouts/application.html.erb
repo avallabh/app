@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Appointment API" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Appointments" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -16,7 +16,7 @@
   <nav class="top-bar" data-topbar>
     <ul class="title-area">
       <li class="name">
-        <h1><a href="<%= root_path %>">Appointment API</a></h1>
+        <h1><%= link_to 'Appointments', root_path %></h1>
       </li>
       <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
     </ul>
@@ -26,26 +26,25 @@
         <div class="button-bar">
           <ul class="button-group right">
             <% if user_signed_in? %>
-
-
-            <li class="navbuttons">
+              <li class="navbuttons">
               <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
             <% else %>
-            <li class="menu"><%= link_to 'Sign In', new_user_session_path %></li>
-            <li class="navbuttons"><%= link_to 'Sign Up', new_user_registration_path %></li>
-                <!--
-                <li><a href="<%#= new_user_session_path %>" class="button">Sign In</a></li>
-                <li><a href="<%#= new_user_registration_path %>" class="button">Sign Up</a></li>
-              -->
-              <% end %>
-            </ul>
-          </div>
-        </ul>
-        <!-- Left Nav Section -->
-        <!-- <ul class="left">
-          <li>
-          </li>
-        </ul> -->
+              <li class="menu"><%= link_to 'Sign In', new_user_session_path %></li>
+              <li class="navbuttons"><%= link_to 'Sign Up', new_user_registration_path %></li>
+            <% end %>
+          </ul>
+        </div>
+      </ul>
+      <!-- Left Nav Section -->
+      <ul class="left">
+        <li>
+          <% if current_page?(root_path) %>
+            <%= link_to 'API', api_v1_appointments_path %>
+          <% else %>
+            <%= link_to 'API', "/api/v1#{request.env['PATH_INFO']}" %>
+          <% end %>
+        </li>
+      </ul>
       </section>
     </nav>
     <!-- END TOP NAV BAR -->
