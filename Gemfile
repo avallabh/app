@@ -35,6 +35,7 @@ gem "date_time_attribute"
 gem "foundation-rails"
 gem "validates_overlap"
 gem "active_model_serializers"
+# gem 'validates_timeliness', '~> 3.0'
 
 group :production do
   gem "rails_12factor"
