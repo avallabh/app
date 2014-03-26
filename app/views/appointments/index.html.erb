@@ -1,13 +1,31 @@
 <br/>
 <div class="row">
-  <div class="small-12 small-centered columns">
+  <div class="small-12 columns">
     <%= link_to 'Add Appointment', new_appointment_path, class: 'button small new-button' %>
   </div>
 </div>
 
 <div class="row">
-  <div class="small-12 small-centered columns">
-    <!-- Search -->
+
+  <div class="small-10 columns">
+    <%= form_tag(appointments_path, method: :get) do %>
+      <%= label_tag(:start_time, "Start Time") %>
+      <%= text_field_tag(:start_time, "Starting Time", class: "timepicker") %>
+      <br/>
+      <%= label_tag(:end_time, "End Time") %>
+      <%= text_field_tag(:end_time, "Ending Time", class: "timepicker") %>
+      <br/>
+      <%= submit_tag "Find Appointments in Range", class: "button small" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-12 columns">
+    <% if params[:start_time] && params[:end_time] %>
+    <h4 class="center-text">Appointments for <%= params[:start_time].to_s %> through <%= params[:end_time].to_s %></h4>
+    <%= Appointment.where(@appointment.start_time..@appointment.end_time).count %>
+    <% end %>
   </div>
 </div>
 

@@ -3,7 +3,13 @@ class AppointmentsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :destroy, :edit]
 
   def index
-    @appointments = Appointment.all
+    if params[:start_time] || params[:end_time]
+      @start_time = Chronic.parse(params[:start_time]).to_s
+      @end_time = Chronic.parse(params[:end_time]).to_s
+      @appointments = @appointments.find_appointments_in_range(@start_time, @end_time)
+    else
+      @appointments = Appointment.all
+    end
   end
 
   def new
