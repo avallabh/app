@@ -11,9 +11,9 @@
     <div class="small-3 columns"></div>
     <div class="small-6 small-centered columns"><div>
       <%= simple_form_for @appointment do |f| %>
-      <%= f.input :start_time, label: 'Start Time' %>
+      <%= f.input :start_time, label: 'Start Time', start_year: 2014, minute_step: 5, start_hour: 06, end_hour: 18, ampm: true %>
       <br/>
-      <%= f.input :end_time, label: 'End Time' %>
+      <%= f.input :end_time, label: 'End Time', start_year: 2014, minute_step: 5, start_hour: 06, end_hour: 18, ampm: true %>
       <br/>
       <%= f.input :first_name, label: 'First Name' %>
       <%= f.input :last_name, label: 'Last Name' %>

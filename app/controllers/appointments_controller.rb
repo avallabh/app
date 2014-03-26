@@ -4,9 +4,10 @@ class AppointmentsController < ApplicationController
 
   def index
     if params[:start_time] || params[:end_time]
-      @start_time = Chronic.parse(params[:start_time]).to_s
-      @end_time = Chronic.parse(params[:end_time]).to_s
-      @appointments = @appointments.find_appointments_in_range(@start_time, @end_time)
+      @appointments = Appointment.all
+      @start_time = Chronic.parse(params[:start_time]).to_datetime
+      @end_time = Chronic.parse(params[:end_time]).to_datetime
+      @appointments = Appointment.find_appointments_in_range(@start_time, @end_time)
     else
       @appointments = Appointment.all
     end
@@ -77,4 +78,8 @@ class AppointmentsController < ApplicationController
   def appointment_params
     params.require(:appointment).permit(:first_name, :last_name, :start_time, :end_time, :comments, :user_id)
   end
+
+  # def find_appointments_in_range(start_time, end_time)
+  #   Appointment.where("start_time >= ? AND end_time <= ?", @start_time, @end_time).order(:start_time)
+  # end
 end
