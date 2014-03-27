@@ -6,7 +6,7 @@ class Appointment < ActiveRecord::Base
   # end
 
   def find_appointments_in_range(start_time, end_time)
-    Appointment.where("start_time >= ? AND end_time <= ?", @start_time, @end_time) #.order(:start_time)
+    Appointment.where("start_time >= ? AND end_time <= ?", @start_time, @end_time)
   end
 
   validates_presence_of :start_time

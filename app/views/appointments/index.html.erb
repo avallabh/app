@@ -6,7 +6,6 @@
 </div>
 
 <div class="row">
-
   <div class="small-10 columns">
     <%= form_tag(appointments_path, method: :get) do %>
       <%= label_tag(:start_time, "Start Time") %>
@@ -15,7 +14,7 @@
       <%= label_tag(:end_time, "End Time") %>
       <%= text_field_tag(:end_time, "Ending Time", class: "timepicker") %>
       <br/>
-      <%= submit_tag "Find Appointments in Range", class: "button small" %>
+      <%= submit_tag "Find Appointments In Range", class: "button small" %>
     <% end %>
   </div>
 </div>
