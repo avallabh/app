@@ -47,7 +47,6 @@ class AppointmentsController < ApplicationController
 
   def update
     @appointment = Appointment.find(params[:id])
-
     if @appointment.start_time.future? && @appointment.end_time.future?
       if @appointment.update(appointment_params)
         flash[:success] = 'Appointment updated'

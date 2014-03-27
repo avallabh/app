@@ -29,6 +29,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'dotenv-rails', :groups => [:development, :test]
+
 gem "devise"
 gem "simple_form"
 gem "date_time_attribute"
@@ -55,5 +57,4 @@ group :development, :test do
   gem "capybara"
   gem "quiet_assets"
   gem "launchy"
-  gem 'dotenv-rails'
 end
